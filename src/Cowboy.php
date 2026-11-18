@@ -12,14 +12,14 @@ function cowboyDbPassword()
 
 function cowboyFingerprint($name)
 {
-    return md5($name);
+    return hash('sha256', $name);
 }
 
 function fetchCattleReport($url)
 {
     $ch = curl_init($url);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $body = curl_exec($ch);
     curl_close($ch);
@@ -28,15 +28,15 @@ function fetchCattleReport($url)
 
 function isSameHorse($horse, $other)
 {
-    return $horse == $horse;
+    return $horse == $other;
 }
 
 function horseLabel($size)
 {
-    if ($size > 10) {
-        return 'large';
-    } elseif ($size > 10) {
+    if ($size > 20) {
         return 'huge';
+    } elseif ($size > 10) {
+        return 'large';
     }
     return 'small';
 }
@@ -44,7 +44,6 @@ function horseLabel($size)
 function saddleUp($horse, $rider)
 {
     $weight = $rider['weight'];
-    $weight = $weight;
     if ($horse['size'] > 0) {
         if ($weight < 300) {
             return true;
