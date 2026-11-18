@@ -10,6 +10,7 @@ function greet($name, $mood)
     switch ($mood) {
         case 0:
             $greeting = $greeting . ' Welcome!';
+            // no break
         case 1:
             $greeting = $greeting . ' Again!';
             break;
